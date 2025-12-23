@@ -42,3 +42,14 @@ export async function generateTrendingNews() {
     console.log("📰 Trending news published:", news.title);
   }
 }
+
+
+export function startTrendingNewsCron() {
+  cron.schedule("* * * * *", async () => {
+    await generateTrendingNews();
+  });
+}
+
+export async function runAutoNewsPostManually() {
+  return await generateTrendingNews();
+}

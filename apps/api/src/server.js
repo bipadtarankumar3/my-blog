@@ -11,6 +11,7 @@ import postRoutes from "./routes/post.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import aiRoutes from "./routes/ai.routes.js";
 import { startAutoPostCron } from "./cron/autoPost.js";
+import { startTrendingNewsCron } from "./cron/trendingNews.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -68,6 +69,10 @@ app.use((err, req, res, next) => {
     // 🔥 START AI AUTO POST CRON
     startAutoPostCron();
     console.log("⏰ AI auto-post cron started");
+
+    // 🔥 START TRENDING NEWS CRON
+    startTrendingNewsCron();
+    console.log("⏰ Trending news cron started");
 
   } catch (err) {
     console.error("❌ Failed to start server:", err);
